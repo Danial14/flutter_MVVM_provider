@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_flutter_prac/utils/routes/routes.dart';
 import 'package:mvvm_flutter_prac/utils/routes/routes_naMe.dart';
 import 'package:mvvm_flutter_prac/view/login_screen.dart';
+import 'package:mvvm_flutter_prac/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -29,6 +31,14 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: RoutesName.login,
       onGenerateRoute: Routes.generateRoute,
+    ),
+    providers: [
+      ChangeNotifierProvider(
+        create: (ctx){
+          return AuthViewModel(context);
+        },
+      )
+    ],
     );
   }
 }

@@ -31,4 +31,8 @@ class Utils{
     )..show(ctx)
     );
   }
+  static void changeFocus(BuildContext buildContext, FocusNode nextFocus, FocusNode currentFocus){
+    currentFocus.unfocus();
+    FocusScope.of(buildContext).requestFocus(nextFocus);
+  }
 }
