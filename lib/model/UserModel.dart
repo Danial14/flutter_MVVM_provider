@@ -5,7 +5,7 @@ class UserModel {
   UserModel.fromJson(dynamic json) {
     token = json['token'];
   }
-  String token;
+  String? token;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

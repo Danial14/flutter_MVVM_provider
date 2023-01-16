@@ -6,10 +6,11 @@ class ApiResponse<T>{
   String? Message;
   ApiResponse(this.status, this.data, this.Message);
   ApiResponse.loading() : status = Status.LOADING;
-  ApiResponse.coMpleted(){
+  ApiResponse.coMpleted(T data){
     status = Status.COMPLETED;
+    this.data = data;
   }
-  ApiResponse.error() : status = Status.ERROR;
+  ApiResponse.error(this.Message) : status = Status.ERROR;
   String toString(){
     return "Status : $status\n Message : $Message \n Data : $data";
   }

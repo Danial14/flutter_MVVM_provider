@@ -77,7 +77,7 @@ class _SignupState extends State<SignupView>{
                   Utils.flushBarErrorMessage("Please enter password of atleast 6 digit", context);
                 }
                 else{
-                  authViewModel.loginApi({
+                  authViewModel.signupApi({
                     "email" : _eMailController.text.toString(),
                     "password" : _passwordController.text.toString()
                   }, context);

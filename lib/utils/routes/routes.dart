@@ -4,6 +4,7 @@ import 'package:mvvm_flutter_prac/view/home_screen.dart';
 import 'package:mvvm_flutter_prac/view/login_screen.dart';
 
 import '../../view/signup_view.dart';
+import '../../view/splash_view.dart';
 
 
 class Routes{
@@ -21,6 +22,12 @@ class Routes{
         return MaterialPageRoute(
           builder: (context){
             return SignupView();
+          }
+        );
+      case RoutesName.splashScreen:
+        return MaterialPageRoute(
+          builder: (context){
+            return SplashView();
           }
         );
       default:
