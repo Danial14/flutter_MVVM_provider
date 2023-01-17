@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
@@ -34,5 +33,12 @@ class Utils{
   static void changeFocus(BuildContext buildContext, FocusNode nextFocus, FocusNode currentFocus){
     currentFocus.unfocus();
     FocusScope.of(buildContext).requestFocus(nextFocus);
+  }
+  static String calculateAverage(List<int> ratings){
+    int rating = 0;
+    for(int i = 0; i < ratings.length; i++){
+      rating = rating + ratings[i];
+    }
+    return double.parse((rating / ratings.length).toString()).toStringAsFixed(2);
   }
 }

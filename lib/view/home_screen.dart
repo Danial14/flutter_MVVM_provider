@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter_prac/data/response/status.dart';
+import 'package:mvvm_flutter_prac/utils/utils.dart';
 import 'package:mvvm_flutter_prac/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -50,12 +52,29 @@ class _HomeScreenState extends State<HomeScreen>{
               switch(res.status!){
                 case Status.COMPLETED:
                   return ListView.builder(itemBuilder: (ctx, position){
-                    return ListTile(
-                      title: Text(res.data!.movies[position].title!),
+                    return Card(
+                        child: ListTile(
+                          leading: Image.network(res.data!.movies[position].posterurl.toString(),
+                          errorBuilder: (ctx, data, stack){
+                            return Icon(Icons.error);
+                          },
+                            fit: BoxFit.cover,
+                            width: 50,
+                            height: 50,
+                          ),
+                          title: Text(res.data!.movies[position].title!),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(Utils.calculateAverage(res.data!.movies[position].ratings!)),
+                              Icon(Icons.star, color: Colors.yellow,)
+                            ],
+                          ),
+                    )
                     );
                   }, itemCount: res.data!.movies.length,);
                 case Status.ERROR:
-                  return Text(res.Message!);
+                  return Center(child: Text(res.Message!));
 
                 case Status.LOADING:
                   return const Center(child: CircularProgressIndicator());
